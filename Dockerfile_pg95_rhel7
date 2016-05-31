@@ -1,0 +1,16 @@
+FROM registry.access.redhat.com/rhel7/rhel
+
+# Add the PG yum repository
+RUN rpm -Uvh http://yum.postgresql.org/9.5/redhat/rhel-7.2-x86_64/pgdg-redhat95-9.5-2.noarch.rpm
+
+# Install the PG server
+RUN yum -y install postgresql95-server postgresql95
+
+# Initialize the DB
+RUN /usr/pgsql-9.5/bin/postgresql95-setup initdb
+
+# Enable the Server
+RUN systemctl enable postgresql-9.5
+
+# Start the server
+CMD ["systemctl", "start", "postgresql-9.5"]

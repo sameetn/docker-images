@@ -1,0 +1,18 @@
+ FROM registry.access.redhat.com/rhel7/rhel
+
+# Remove existing nodejs if present
+RUN yum remove nodejs
+
+# Install nodejs 6
+RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
+RUN yum -y install nodejs
+
+# Check the version of nodejs installed
+RUN node -v
+RUN npm -v
+
+# Install gcc and make to allow building native extensions
+#RUN yum -y install gcc-c++ make
+
+# Install the necessary modules
+RUN npm -g install nodemon

@@ -1,0 +1,11 @@
+FROM registry.access.redhat.com/rhel7/rhel
+
+# Copy the openjdk rpm
+ADD java-1.8.0-openjdk-devel-1.8.0.65-3.b17.el7.x86_64.rpm .
+
+# Install java 1.8
+RUN yum -y install java-1.8.0-openjdk-devel-1.8.0.65-3.b17.el7.x86_64.rpm
+
+# Check the version of nodejs installed
+RUN java -version
+RUN javac -version
